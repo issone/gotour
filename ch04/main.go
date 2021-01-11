@@ -3,8 +3,8 @@ package main
 import "fmt"
 
 func main() {
-	// test1()
-	// test2()
+	test1()
+	test2()
 	test3()
 }
 
@@ -72,18 +72,24 @@ func test2() {
 
 	//切片不仅可以通过 make 函数声明，也可以通过字面量的方式声明和初始化，如下所示：
 
-	slice3 := []string{}
+	slice3 := []string{} // 声明并初始化
+	fmt.Println(slice3)
 
 	fmt.Println(len(slice3), cap(slice3))
 	slice3 = append(slice3, "1", "2")
-	fmt.Println(slice3)
+	fmt.Println("slice3", slice3)
+
+	var myarr []string //由于 切片是引用类型，所以你不对它进行赋值的话，它的零值（默认值）是 nil
+	fmt.Println(myarr == nil)
+	myarr = append(myarr, "123")
+	fmt.Println(myarr)
 
 }
 
 // MAP
 
 func test3() {
-	nameAgeMap := make(map[string]int)
+	nameAgeMap := make(map[string]int) // 声明并初始化字典的方法
 	nameAgeMap["a"] = 20
 	fmt.Println("nameAgeMap", nameAgeMap)
 	// 除了可以通过 make 函数创建 map 外，还可以通过字面量的方式
@@ -123,5 +129,20 @@ func test3() {
 	// map 的遍历是无序的，也就是说你每次遍历，键值对的顺序可能会不一样。如果想按顺序遍历，可以先获取所有的 Key，并对 Key 排序，然后根据排序好的 Key 获取对应的 Value.
 
 	fmt.Println(len(nameAgeMap)) // map 是没有容量的，它只有长度，也就是 map 的大小（键值对的个数）
+
+	// 如果我们用var 先声明一个字典，需要注意以下情况
+
+	// 声明一个名为 score 的字典
+	var scores map[string]int
+	// scores["chinese"] = 80	// 会失败，因为未初始化的 score 的零值为nil，无法直接进行赋值
+
+	if scores == nil {
+		// 需要使用 make 函数先对其初始化
+		scores = make(map[string]int)
+	}
+
+	// 经过初始化后，就可以直接赋值
+	scores["chinese"] = 90
+	fmt.Println(scores)
 
 }

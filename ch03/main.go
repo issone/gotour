@@ -157,27 +157,27 @@ func test9() {
 	}
 }
 
-
 // 判断一个同学是否有挂科记录的函数,返回值是布尔类型
 func getResult(args ...int) bool {
-    for _, i := range args {
-        if i < 60 {
-            return false
-        }
-    }
-    return true
+	for _, i := range args {
+		if i < 60 {
+			return false
+		}
+	}
+	return true
 }
 
 // switch 后面可以接一个函数，只要保证 case 后的值类型与函数的返回值 一致即可。
 func test10() {
-    chinese := 80
-    english := 50
-    math := 100
+	chinese := 80
+	english := 50
+	math := 100
 
-    switch getResult(chinese, english, math) {
-    // case 后也必须 是布尔类型
-    case true:
-        fmt.Println("该同学所有成绩都合格")
-    case false:
-        fmt.Println("该同学有挂科记录")
+	switch getResult(chinese, english, math) {
+	// case 后也必须 是布尔类型
+	case true:
+		fmt.Println("该同学所有成绩都合格")
+	case false:
+		fmt.Println("该同学有挂科记录")
+	}
 }

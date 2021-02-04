@@ -107,6 +107,11 @@ func main() {
 	// 1. 任何类型的变量都可以转换为空接口 intferface{}， reflect.ValueOf 和 reflect.TypeOf 的参数就是 interface{}，表示可以把任何类型的变量转换为反射对象
 	// 2.reflect.Value 结构体的 Interface 方法返回的值也是 interface{}，表示可以把反射对象还原为对应的类型变量。
 	// 3.要修改反射的对象，该值必须可设置，也就是可寻址
+
+	//反射调用person的Print方法
+	mPrint := pv.MethodByName("Print")
+	args := []reflect.Value{reflect.ValueOf("登录")}
+	mPrint.Call(args)
 }
 
 type person struct {
@@ -116,4 +121,8 @@ type person struct {
 
 func (p person) String() string {
 	return fmt.Sprintf("Name is %s,Age is %d", p.Name, p.Age)
+}
+
+func (p person) Print(prefix string) {
+	fmt.Printf("%s:Name is %s,Age is %d\n", prefix, p.Name, p.Age)
 }

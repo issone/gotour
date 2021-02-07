@@ -82,6 +82,8 @@ func test3() {
 	b1 := *(*[]byte)(unsafe.Pointer(sh))
 	fmt.Println(b1)
 
+	// 注意：通过 unsafe.Pointer 把 string 转为 []byte 后，不能对 []byte 修改，比如不可以进行 b1[0]=12 这种操作，会报异常，导致程序崩溃。这是因为在 Go 语言中 string 内存是只读的。
+
 }
 
 func arrayF(a [2]string) {

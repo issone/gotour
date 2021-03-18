@@ -2,11 +2,12 @@ package main
 
 import (
 	"fmt"
+	"go_t/ch20/util"
 )
 
 func main() {
 	fmt.Println("先导入fmt包，才能使用")
-	Test1()
+	util.Test1()
 }
 
 // 一个包中可以有多个 init 函数，但是它们的执行顺序并不确定，所以如果你定义了多个 init 函数的话，要确保它们是相互独立的，一定不要有顺序上的依赖。
